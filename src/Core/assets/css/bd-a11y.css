@@ -1,0 +1,99 @@
+/* Hauptcontainer */
+.choices {
+  font-size: var(--bde-form-font-size);
+  color: var(--bde-form-text-color);
+  line-height: 1.5;
+  font-family: var(--bde-body-font-family);
+  background: var(--bde-form-input-background-color);
+  width: 100%;
+}
+
+/* Eingabebereich */
+.choices__inner {
+  background: var(--bde-form-input-background-color);
+  border-radius: var(--bde-form-input-border-radius);
+  border-top: var(--bde-form-input-border-top) !important;
+  border-right: var(--bde-form-input-border-right) !important;
+  border-bottom: var(--bde-form-input-border-bottom) !important;
+  border-left: var(--bde-form-input-border-left) !important;
+  color: var(--bde-form-text-color);
+  font-size: var(--bde-form-font-size) !important;
+}
+
+/* Dropdown-Liste */
+.choices__list--dropdown {
+  background: var(--bde-form-input-background-color) !important;
+  border-radius: var(--bde-form-input-border-radius);
+  border-top: var(--bde-form-input-border-top) !important;
+  border-right: var(--bde-form-input-border-right) !important;
+  border-bottom: var(--bde-form-input-border-bottom) !important;
+  border-left: var(--bde-form-input-border-left) !important;
+  color: var(--bde-form-text-color);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+/* Search */
+.choices[data-type*=select-one] .choices__input {
+  background: var(--bde-form-input-background-color);
+}
+
+/* Auswahl-Items Multiple (Tags/Buttonoptik) */
+.choices__list--multiple .choices__item {
+  background: var(--bde-brand-primary-color);
+  color: var(--white);
+  font-size: var(--bde-form-font-size);
+}
+
+.choices__list--single .choices__item {
+  font-size: var(--bde-form-font-size);
+  color: var(--bde-form-text-color);
+}
+
+/* Item Remove Button (SVG Icon) */
+.choices__button {
+  border-left: 1px solid var(--bde-form-input-background-color) !important;
+}
+
+/* Placeholder */
+.choices__placeholder {
+  color: var(--bde-form-input-placeholder-color) !important;
+  opacity: 1;
+}
+
+/* Fokus/Aktiv-Zustand */
+.choices.is-focused .choices__inner,
+.choices.is-open .choices__inner {
+  border-color: var(--bde-form-input-focused-border-color);
+  box-shadow: var(--bde-form-input-focused-shadow);
+}
+
+/* Disabled-Zustand */
+.choices.is-disabled .choices__inner {
+  background: var(--grey-100, #f3f4f6);
+  color: var(--grey-400, #9ca3af);
+}
+
+/* Dropdown-Hover-Item */
+.choices__item--selectable.is-highlighted {
+  background: var(--bde-brand-primary-color-hover, #eef2ff) !important;
+  color: var(--white, #fff);
+}
+
+/* Listengruppen / Überschrift */
+.choices__group .choices__heading {
+  color: var(--bde-form-label-color, var(--bde-headings-color, #224c7d));
+  font-weight: 500;
+  font-size: 1em;
+  margin-bottom: 4px;
+}
+
+/* Fehlerstatus für Formfelder */
+.choices.is-invalid .choices__inner {
+  border-color: var(--red-500, #ef4444);
+  background: var(--red-50, #fef2f2);
+}
+
+/* Gap zu anderen Feldern */
+.choices {
+  margin-bottom: var(--bde-form-gap);
+}

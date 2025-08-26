@@ -1,0 +1,19 @@
+{
+  "name": "mirkoschubert/breakdance-a11y",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": "^8.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Breakdance\\A11y\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "mirkoschubert",
+      "email": "office@mirkoschubert.de"
+    }
+  ]
+}

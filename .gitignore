@@ -1,0 +1,9 @@
+.DS_Store
+node_modules
+package-lock.json
+push.sh
+pull.sh
+push-ionos.sh
+pull-ionos.sh
+rsync.log
+vendor

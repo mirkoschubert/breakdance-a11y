@@ -24,9 +24,6 @@ require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
 use Breakdance\A11y\Core\Plugin;
 
-include 'breakdance/bd-register-elements.php';
-
 $plugin = new Plugin();
-$plugin->init();
 
 register_uninstall_hook(__FILE__, ['Breakdance\A11y\Core\Plugin', 'uninstall']);

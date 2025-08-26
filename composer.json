@@ -7,7 +7,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Breakdance\\A11y\\": "src/"
+      "Breakdance\\A11y\\": "src/",
+      "BreakdanceCustomElements\\": "breakdance/"
     }
   },
   "authors": [

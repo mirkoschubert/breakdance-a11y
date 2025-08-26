@@ -9,7 +9,10 @@
     "psr-4": {
       "Breakdance\\A11y\\": "src/",
       "BreakdanceCustomElements\\": "breakdance/"
-    }
+    },
+    "files": [
+      "breakdance/ElementRegistration.php"
+    ]
   },
   "authors": [
     {

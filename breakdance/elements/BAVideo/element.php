@@ -156,7 +156,7 @@ class BAVideo extends \Breakdance\Elements\Element
         "video",
         "Video",
         [],
-        ['type' => 'video', 'layout' => 'vertical', 'videoOptions' => ['providers' => ['youtube', 'vimeo', 'dailymotion']], 'autofocus' => null],
+        ['type' => 'video', 'layout' => 'vertical', 'videoOptions' => ['providers' => ['youtube', 'vimeo', 'dailymotion']]],
         false,
         false,
         [],

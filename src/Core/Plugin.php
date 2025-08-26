@@ -21,7 +21,7 @@ class Plugin
     register_activation_hook('__FILE__', [$this, 'activate']);
     register_deactivation_hook('__FILE__', [$this, 'deactivate']);
 
-    add_action('plugins_loaded', [$this, 'load_text_domain']);
+    add_action('init', [$this, 'load_text_domain']);
     add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
   }
 

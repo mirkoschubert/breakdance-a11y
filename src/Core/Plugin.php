@@ -46,6 +46,11 @@ class Plugin
     load_plugin_textdomain('bda11y', false, BDA11Y_PATH .'/lang/');
   }
 
+  public function get_plugin_name()
+  {
+    return esc_html__(BDA11Y_PLUGIN, 'bda11y');
+  }
+
   public function enqueue_scripts()
   {
     if(!is_admin())	{

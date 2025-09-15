@@ -15,7 +15,7 @@ Domain Path:  /lang
 if (!defined( 'ABSPATH' )) exit();
 
 define('BDA11Y_VERSION', '0.4.0');
-define('BDA11Y_PLUGIN', esc_html__('Breakdance A11y', 'bda11y'));
+define('BDA11Y_PLUGIN', 'Breakdance A11y');
 define('BDA11Y_DIR', dirname(plugin_basename(__FILE__)));
 define('BDA11Y_PATH', plugin_basename(__FILE__));
 define('BDA11Y_ABSPATH', plugin_dir_path(__FILE__));

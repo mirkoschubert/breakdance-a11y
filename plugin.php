@@ -2,7 +2,7 @@
 /*
 Plugin Name:  Breakdance A11y
 Plugin URI:   https://github.com/mirkoschubert/breakdance-a11y
-Description:  Accessibility Features and Elements for the Soflyy Breakdance Builder 
+Description:  Accessibility Features and Elements for the Soflyy Breakdance Builder
 Version:      0.4.0
 Author:       Mirko Schubert
 Author URI:   https://mirkoschubert.de/
@@ -12,11 +12,13 @@ Text Domain:  bda11y
 Domain Path:  /lang
 */
 
-if (!defined( 'ABSPATH' )) exit();
+if (!defined('ABSPATH'))
+  exit();
 
 define('BDA11Y_VERSION', '0.4.0');
 define('BDA11Y_PLUGIN', 'Breakdance A11y');
 define('BDA11Y_DIR', dirname(plugin_basename(__FILE__)));
+define('BDA11Y_URL', plugin_dir_url(__FILE__));
 define('BDA11Y_PATH', plugin_basename(__FILE__));
 define('BDA11Y_ABSPATH', plugin_dir_path(__FILE__));
 

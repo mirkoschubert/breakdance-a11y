@@ -1,0 +1,71 @@
+.breakdance .bda11y-leaflet-map {
+  width: 100%;
+  height: 25rem;
+}
+
+.breakdance .bda11y-leaflet-map .leaflet-container {
+  width: 100%;
+  height: 25rem;
+}
+
+.breakdance .bda11y-leaflet-map .leaflet-bar {
+  overflow: hidden;
+}
+
+.breakdance .bda11y-leaflet-map .leaflet-bar a {
+  background-color: #fff;
+  color: #131313;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breakdance .bda11y-leaflet-map .leaflet-control-fullscreen a {
+  background-image: none !important;
+  color: #131313;
+  border-radius: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breakdance .bda11y-leaflet-map .leaflet-control-zoom a {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breakdance .bda11y-leaflet-map .leaflet-popup-content-wrapper,
+.breakdance .bda11y-leaflet-map .leaflet-popup-tip {
+  background-color: #fff;
+  color: #131313;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4)
+}
+
+.breakdance .bda11y-leaflet-map .leaflet-popup-content-wrapper {
+  border: none;
+  border-radius: .25rem;
+  padding: .25rem;
+}
+
+.breakdance .bda11y-leaflet-map .leaflet-popup-content {
+  margin: 1rem 1.25rem;
+  color: #131313;
+  font-size: .875rem;
+  line-height: 1.3;
+}
+
+.breakdance .bda11y-leaflet-map .leaflet-popup-content a {
+  color: #0af;
+}
+
+.breakdance .bda11y-leaflet-map a.leaflet-popup-close-button {
+  width: 28px;
+  height: 28px;
+  font-size: 1.125rem;
+  color: #242424;
+}

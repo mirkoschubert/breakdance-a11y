@@ -1,0 +1,65 @@
+%%SELECTOR%% {
+  min-height: {{design.size.height.style}};
+  margin-top: {{ design.spacing.margin_top.style }};
+  margin-bottom: {{ design.spacing.margin_bottom.style }};
+  {{ macros.spacing_complex(design.spacing.padding, 'padding') }}
+  {{ macros.border_radius(design.borders.radius) }}
+  {{ macros.border_complex(design.borders.styling) }}
+  box-shadow: {{ design.borders.shadow.style }};
+}
+
+%%SELECTOR%% .leaflet-container {
+  height: 100%;
+  {{ macros.border_radius(design.borders.radius) }}
+}
+
+%%SELECTOR%% .leaflet-bar {
+  {{ macros.border_radius(design.controls.borders.radius) }}
+  {{ macros.border_complex(design.controls.borders.styling) }}
+  box-shadow: {{ design.controls.borders.shadow.style }};
+}
+
+%%SELECTOR%% .leaflet-bar a {
+  background-color: {{ design.controls.background_color }};
+  color: {{ design.controls.icon_color }};
+  border-bottom-color: {{ design.controls.borders.styling.bottom.color }};
+}
+
+%%SELECTOR%% .leaflet-popup-content-wrapper,
+%%SELECTOR%% .leaflet-popup-tip {
+  background-color: {{ design.popup.colors.background }};
+  color: {{ design.popup.colors.text }};
+  box-shadow: {{ design.popup.borders.shadow.style }};
+}
+
+%%SELECTOR%% .leaflet-popup-content-wrapper {
+  {{ macros.border_complex(design.popup.borders.styling) }}
+  {{ macros.border_radius(design.popup.borders.radius) }}
+  padding: .25rem;
+}
+
+%%SELECTOR%% .leaflet-popup-content {
+  margin: 1rem 1.25rem;
+  color: {{ design.popup.colors.text }};
+  {{ macros.typography(design.popup.typography, globalSettings) }}
+}
+
+%%SELECTOR%% .leaflet-popup-content a {
+  color: {{ design.popup.colors.link }};
+}
+
+%%SELECTOR%% a.leaflet-popup-close-button {
+  width: 28px;
+  height: 28px;
+  font-size: 1.125rem;
+  color: {{ design.popup.colors.close_button }};
+}
+
+%%SELECTOR%% .leaflet-marker-icon {
+  width: {{ design.marker.size.style }} !important;
+  height: auto !important;
+}
+
+%%SELECTOR%% .leaflet-marker-icon svg {
+  fill: {{ design.marker.color }};
+}

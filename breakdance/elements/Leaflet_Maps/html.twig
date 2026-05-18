@@ -1,0 +1,8 @@
+<div class="leaflet-map"></div>
+{%  if design.marker.type == "icon" and design.marker.icon != "" %}
+  <div class="marker-icon" style="display:none;">
+  {% if design.marker.icon.svgCode %}
+    {{ design.marker.icon.svgCode }}
+  {% endif %}
+  </div>
+{% endif %}

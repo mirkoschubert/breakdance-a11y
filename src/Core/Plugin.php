@@ -3,6 +3,8 @@
 namespace Breakdance\A11y\Core;
 
 use Breakdance\A11y\Core\Optimization;
+use Breakdance\A11y\Core\AdminSettings;
+use Breakdance\A11y\Core\GooglePlaceRatingController;
 use function BreakdanceCustomElements\registerElements;
 
 class Plugin
@@ -26,6 +28,13 @@ class Plugin
     add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
 
     add_action('init', [$this, 'add_excerpt_to_pages']);
+
+    new AdminSettings();
+
+    add_action('rest_api_init', function () {
+      $controller = new GooglePlaceRatingController();
+      $controller->register_routes();
+    });
 
     add_filter('rank_math/frontend/breadcrumb/items', [$this, 'register_job_breadcrumb'], 10, 2);
   }
@@ -71,6 +80,8 @@ class Plugin
   public function register_dependencies()
   {
     add_filter('breakdance_reusable_dependencies_urls', function ($urls) {
+      $urls['bda11yGooglePlaceRatingJs'] = plugins_url('breakdance/elements/Google_Place_Rating/assets/js/google-place-rating.js', BDA11Y_PATH);
+
       $base = plugins_url('breakdance/elements/Leaflet_Maps/assets', BDA11Y_PATH);
 
       $urls['bda11yLeafletJs'] = $base . '/js/leaflet.js';

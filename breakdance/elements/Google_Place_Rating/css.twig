@@ -1,0 +1,51 @@
+%%SELECTOR%% .bda11y-google-rating__google-logo svg {
+  fill: {{ design.logo.custom_logo.color }}
+}
+
+/* Star layer colors */
+%%SELECTOR%% .bda11y-google-rating__stars-empty svg {
+  fill: {{ design.stars.unmarked_color | default('lightgrey') }};
+}
+
+%%SELECTOR%% .bda11y-google-rating__stars-filled svg {
+  fill: {{ design.stars.stars_color | default('orange') }};
+}
+
+/* Star size and gap — applied to both layers identically so they overlap pixel-perfectly */
+%%SELECTOR%% .bda11y-google-rating__stars-empty svg,
+%%SELECTOR%% .bda11y-google-rating__stars-filled svg {
+  width: {{ design.stars.size.style }};
+  height: {{ design.stars.size.style }};
+}
+
+%%SELECTOR%% .bda11y-google-rating__stars-empty,
+%%SELECTOR%% .bda11y-google-rating__stars-filled {
+  gap: {{ design.stars.gap.style }};
+}
+
+/* Google Logo sizing */
+{% if design.logo.size.style is defined and design.logo.size.style %}
+%%SELECTOR%% .bda11y-google-rating__google-logo svg,
+%%SELECTOR%% .bda11y-google-rating__google-logo img {
+  width: {{ design.logo.size.style }};
+  height: auto;
+}
+{% endif %}
+
+%%SELECTOR%%.bda11y-google-rating {
+  gap: {{ design.spacing.label_spacing.style }};
+}
+
+%%SELECTOR%% .bda11y-google-rating__value {
+  {{ macros.typography(design.typography.rating, globalSettings) }}
+}
+
+%%SELECTOR%% .bda11y-google-rating__count {
+  {{ macros.typography(design.typography.count, globalSettings) }}
+}
+
+%%SELECTOR%%.bda11y-google-rating {
+  {{ macros.spacing_margin_y(design.spacing.wrapper) }}
+}
+
+

@@ -1,0 +1,73 @@
+.breakdance .bda11y-google-rating {
+  max-width: 100%;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.breakdance .bda11y-google-rating .bda11y-google-rating__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: .5rem;
+}
+
+/* Grid container: both layers occupy the same cell, so they overlap perfectly
+   and the container always matches the size of its content. */
+.breakdance .bda11y-google-rating .bda11y-google-rating__stars {
+  display: grid;
+  flex-shrink: 0;
+}
+
+.breakdance .bda11y-google-rating .bda11y-google-rating__stars-empty,
+.breakdance .bda11y-google-rating .bda11y-google-rating__stars-filled {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Filled layer starts fully clipped (right inset 100% = nothing visible).
+   JS sets the target inset, CSS transition animates it. */
+.breakdance .bda11y-google-rating .bda11y-google-rating__stars-filled {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.breakdance .bda11y-google-rating .bda11y-google-rating__stars-empty svg,
+.breakdance .bda11y-google-rating .bda11y-google-rating__stars-filled svg {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.breakdance .bda11y-google-rating .bda11y-google-rating__label {
+  font-weight: 400;
+  line-height: 1.2;
+  font-size: 20px;
+}
+
+.breakdance .bda11y-google-rating .bda11y-google-rating__google-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.breakdance .bda11y-google-rating .bda11y-google-rating__google-logo svg,
+.breakdance .bda11y-google-rating .bda11y-google-rating__google-logo img {
+  width: 1.5em;
+  height: auto;
+  display: block;
+}
+
+.breakdance .bda11y-google-rating .bda11y-google-rating__value,
+.breakdance .bda11y-google-rating .bda11y-google-rating__count {
+  font-size: inherit;
+  line-height: 1;
+}

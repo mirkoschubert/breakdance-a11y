@@ -308,12 +308,10 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
         return ['0' =>  ['title' => 'Google Place Rating','inlineScripts' => ['(() => {
   const endpoint = \'/wp-json/bda11y/v1/place-rating\';
 
-  // Deduplicates fetch calls for identical place IDs on the same page.
   const cache = new Map();
 
   const fetchRating = (placeId) => {
     if (!cache.has(placeId)) {
-      console.log(\'[bda11y] Fetching rating for place_id:\', placeId);
       cache.set(
         placeId,
         fetch(endpoint + \'?place_id=\' + encodeURIComponent(placeId), { credentials: \'same-origin\' })
@@ -322,8 +320,6 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
             return res.json();
           })
       );
-    } else {
-      console.log(\'[bda11y] Using cached promise for place_id:\', placeId);
     }
     return cache.get(placeId);
   };
@@ -334,23 +330,13 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
   const formatCount = (v) =>
     new Intl.NumberFormat(\'de-DE\').format(v);
 
-  /**
-   * Animates the filled star layer by changing clip-path.
-   * Two nested rAF calls ensure the browser has painted the starting state
-   * (inset 100% from CSS) before the target value is applied, so the
-   * CSS transition always fires — even when the element is already visible.
-   */
   const revealStars = (el, fillPercent) => {
     const filledLayer = el.querySelector(\'.bda11y-google-rating__stars-filled\');
     if (!filledLayer) {
-      console.warn(\'[bda11y] No filled layer found\');
       return;
     }
     const rightInset = (100 - fillPercent).toFixed(4);
-    console.log(\'[bda11y] Animating: fill\', fillPercent + \'%\', \'| right-inset\', rightInset + \'%\');
 
-    // Double rAF: first frame paints the initial clip value from CSS,
-    // second frame applies the target value and the transition plays.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         filledLayer.style.clipPath = `inset(0 ${rightInset}% 0 0)`;
@@ -361,7 +347,6 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
   const hydrate = async (el, observer) => {
     const placeId = el.dataset.placeId;
     if (!placeId) {
-      console.warn(\'[bda11y] Element found but data-place-id is empty:\', el);
       return;
     }
 
@@ -369,11 +354,8 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
     const showCount  = el.dataset.showCount === \'1\';
     const linkMode   = el.tagName === \'A\' ? \'google_maps\' : \'none\';
 
-    console.log(\'[bda11y] Hydrating, place_id:\', placeId);
-
     try {
       const data = await fetchRating(placeId);
-      console.log(\'[bda11y] API response for\', placeId, \':\', data);
 
       const valueEl = el.querySelector(\'.bda11y-google-rating__value\');
       const countEl = el.querySelector(\'.bda11y-google-rating__count\');
@@ -386,13 +368,9 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
         countEl.textContent = `(${formatCount(data.user_rating_count)})`;
       }
 
-
-      // The <a> tag is already rendered by Twig when link_mode === google_maps.
-      // Just set the href from the API response.
       const target = el;
       if (linkMode === \'google_maps\' && data.google_maps_uri && el.tagName === \'A\') {
         el.href = data.google_maps_uri;
-        console.log(\'[bda11y] Link href set to:\', data.google_maps_uri);
       }
 
       const store = target.closest(\'.bda11y-google-rating\') || target;
@@ -404,16 +382,11 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
       target.dataset.gprReady = \'1\';
 
       if (target.dataset.gprVisible === \'1\') {
-        // Observer already fired while fetch was in flight — animate immediately.
         revealStars(target, data.stars_percent);
       } else {
-        // Element not yet visible — (re-)register the observer on the final element
-        // so it fires when the user scrolls to it.
         observer.observe(target);
-        console.log(\'[bda11y] Observing final element for scroll trigger, place_id:\', placeId);
       }
 
-      console.log(\'[bda11y] Hydration complete for place_id:\', placeId);
     } catch (err) {
       console.error(\'[bda11y] Hydration failed for place_id:\', placeId, err);
       el.dataset.gprError = \'1\';
@@ -422,7 +395,6 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
 
   const boot = () => {
     const elements = document.querySelectorAll(\'.bda11y-google-rating__inner[data-place-id]\');
-    console.log(\'[bda11y] Boot: found\', elements.length, \'Google Place Rating element(s)\');
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -430,20 +402,14 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
         const el = entry.target;
         observer.unobserve(el);
         el.dataset.gprVisible = \'1\';
-        console.log(\'[bda11y] Element visible, place_id:\', el.dataset.placeId, \'| ready:\', el.dataset.gprReady);
 
-        // hydrate() already ran and left gprReady + gprFillPercent on the element.
         if (el.dataset.gprReady === \'1\') {
           revealStars(el, parseFloat(el.dataset.gprFillPercent));
         }
-        // If gprReady is not set: observer was re-registered by hydrate() on the
-        // original el before replaceWith — this should not happen in normal flow.
       });
     }, { threshold: 0.1 });
 
     elements.forEach((el) => {
-      // Initial observe on the original element — only to detect early visibility.
-      // After fetch resolves, hydrate() re-registers on the final (possibly replaced) element.
       observer.observe(el);
       hydrate(el, observer);
     });
@@ -470,6 +436,7 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
     static public function actions()
     {
         return [
+
 'onPropertyChange' => [['script' => '
 (function() {
   const inner = document.querySelector(\'%%SELECTOR%% .bda11y-google-rating__inner\');
@@ -504,7 +471,7 @@ class GooglePlaceRating extends \Breakdance\Elements\Element
   }
 })();
 ',
-        ]],];
+],],];
     }
 
     static function nestingRule()

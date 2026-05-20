@@ -246,30 +246,6 @@ class AdminSettings
         echo '<button type="submit" class="button button-primary">API-Verbindung testen</button>';
         echo '</form>';
 
-        // JS diagnostics section
-        echo '<h3>JS-Hydration debuggen</h3>';
-        echo '<p class="description" style="margin-bottom:8px">';
-        echo 'Das Hydration-Script loggt jeden Schritt in die Browser-Konsole (<code>F12 &rarr; Console</code>). ';
-        echo 'Erwartete Meldungen beim Seitenaufruf mit einem platzierten Element:<br>';
-        echo '<code>[bda11y] Boot: found 1 Google Place Rating element(s)</code><br>';
-        echo '<code>[bda11y] Fetching rating for place_id: ...</code><br>';
-        echo '<code>[bda11y] Hydration complete for place_id: ...</code>';
-        echo '</p>';
-        echo '<p class="description">';
-        echo 'Erscheint kein <code>[bda11y] Boot</code>-Log, wird das Script nicht geladen. ';
-        echo 'Erscheint <code>Boot: found 0 elements</code>, fehlt <code>data-place-id</code> im HTML &ndash; ';
-        echo 'pr&uuml;fbar &uuml;ber Rechtsklick auf das Element &rarr; "Element untersuchen": ';
-        echo 'Das innere <code>&lt;div class="bda11y-google-rating__inner"&gt;</code> muss ein ';
-        echo '<code>data-place-id</code>-Attribut mit der eingetragenen Place ID enthalten.';
-        echo '</p>';
-
-        $rest_url = rest_url('bda11y/v1/place-rating');
-        echo '<p class="description">';
-        echo 'REST-Endpoint direkt im Browser pr&uuml;fen (eingeloggt als Admin): ';
-        echo '<a href="' . esc_url($rest_url . '?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4') . '" target="_blank">';
-        echo esc_html($rest_url) . '?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4</a>';
-        echo '</p>';
-
         // Clear cache form
         echo '<h3>Cache leeren</h3>';
         echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '">';
